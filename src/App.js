@@ -6,6 +6,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ImageGallery } from './components/ImageGallery/ImageGallery';
 import { useState, useEffect } from 'react';
 
+// key = 0e4aaee08aabcf1cd893aec1f6e895b9
+
 function App() {
   const [modalContent, setModalContent] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
