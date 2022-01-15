@@ -1,20 +1,22 @@
 import './App.scss';
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
 
 // import { ToastContainer } from 'react-toastify';
 // import 'react-toastify/dist/ReactToastify.css';
 import { useState, useEffect } from 'react';
 
 import { HomePage } from './components/HomePage/HomePage';
+import { Header } from './components/Header/Header';
 
-// key = 0e4aaee08aabcf1cd893aec1f6e895b9
-
-function App() {  
-  
+function App() {
   return (
-    <div className="App">
-      <HomePage/>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Header />
+        {/* <HomePage /> */}
+      </div>
+    </BrowserRouter>
   );
 }
 
