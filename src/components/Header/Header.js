@@ -5,19 +5,21 @@ import { MoviesPage } from '../MoviesPage/MoviesPage';
 
 export function Header() {
   return (
-    <header>
-      <ul className={styles.list}>
-        <li className={styles.item}>
-          <NavLink to="/">Home</NavLink>
-        </li>
-        <li className={styles.item}>
-          <NavLink to="/movies">Movies</NavLink>
-        </li>
-      </ul>
-      <Routes>
+    <>
+      <header>
+        <ul className={styles.list}>
+          <li className={styles.item}>
+            <NavLink to="/">Home</NavLink>
+          </li>
+          <li className={styles.item}>
+            <NavLink to="/movies">Movies</NavLink>
+          </li>
+        </ul>
+      </header>
+      {/* <Routes>
         <Route path="/" exact element={<HomePage />} />
         <Route path="/movies" exact element={<MoviesPage />} />
-      </Routes>
-    </header>
+      </Routes> */}
+    </>
   );
 }
