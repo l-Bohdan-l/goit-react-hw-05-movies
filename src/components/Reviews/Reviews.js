@@ -15,5 +15,18 @@ export function Reviews() {
 
   console.log('reviews', movieReview);
 
-  return <h3>Reviews</h3>;
+  return (
+    <section>
+      {movieReview && (
+        <ul>
+          {movieReview.map(review => (
+            <li key={review.id}>
+              <span>{review.author}</span>
+              <p>{review.content}</p>
+            </li>
+          ))}
+        </ul>
+      )}
+    </section>
+  );
 }

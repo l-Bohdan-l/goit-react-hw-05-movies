@@ -8,14 +8,18 @@ import {
   Routes,
   Route,
   Outlet,
+  useNavigate,
 } from 'react-router-dom';
 import { Cast } from '../Cast/Cast';
 import { Reviews } from '../Reviews/Reviews';
+import moviePlaceholder from '../../images/movie-placeholder.png';
 
 export function MoviePage() {
   const [movieData, setMovieData] = useState(null);
   const { id } = useParams();
   const { pathname } = useLocation();
+  const navigate = useNavigate();
+
   console.log('location', useLocation());
   useEffect(() => {
     fetchMovie(id).then(setMovieData);
@@ -23,12 +27,36 @@ export function MoviePage() {
 
   console.log('data', movieData);
 
+  const goBack = () => {
+    if (pathname.includes('cast')) {
+      return navigate(-2);
+    }
+
+    if (pathname.includes('reviews')) {
+      return navigate(-2);
+    }
+
+    return navigate(-1);
+  };
+
+  console.log(pathname.includes('cast'));
   return (
     <section>
       {movieData && (
         <div>
+          <button
+            onClick={() => {
+              goBack();
+            }}
+          >
+            ← Go back
+          </button>
           <img
-            src={`https://image.tmdb.org/t/p/w500${movieData.poster_path}`}
+            src={
+              movieData.poster_path
+                ? `https://image.tmdb.org/t/p/w500${movieData.poster_path}`
+                : moviePlaceholder
+            }
             alt={movieData.original_title}
           />
           <div>
