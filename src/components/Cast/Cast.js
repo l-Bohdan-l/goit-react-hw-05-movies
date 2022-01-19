@@ -4,7 +4,7 @@ import { fetchMovieCast } from '../../services/ApiSrvice';
 import { useParams } from 'react-router-dom';
 import castPlaceholder from '../../images/cast-placeholder.png';
 
-export function Cast() {
+export default function Cast() {
   const [movieCast, setMovieCast] = useState(null);
   const { id } = useParams();
 

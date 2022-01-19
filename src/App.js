@@ -1,5 +1,6 @@
 import './App.scss';
 import React from 'react';
+import { Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom';
 
 // import { ToastContainer } from 'react-toastify';
@@ -10,8 +11,8 @@ import { HomePage } from './components/HomePage/HomePage';
 import { Header } from './components/Header/Header';
 import { MoviesPage } from './components/MoviesPage/MoviesPage';
 import { MoviePage } from './components/MovieDetailsPage/MovieDetailsPage';
-import { Cast } from './components/Cast/Cast';
-import { Reviews } from './components/Reviews/Reviews';
+const Cast = lazy(() => import('./components/Cast/Cast'));
+const Reviews = lazy(() => import('./components/Reviews/Reviews'));
 
 function App() {
   return (
@@ -20,14 +21,17 @@ function App() {
         <Header />
         {/* <HomePage /> */}
       </div>
-      <Routes>
-        <Route path="/" exact element={<HomePage />} />
-        <Route path="/movies" exact element={<MoviesPage />} />
-        <Route path="/movies/:id" exact element={<MoviePage />}>
-          <Route path="cast" exact element={<Cast />} />
-          <Route path="reviews" exact element={<Reviews />} />
-        </Route>
-      </Routes>
+      <Suspense fallback={<h2>Loading ...</h2>}>
+        <Routes>
+          <Route path="/" exact element={<HomePage />} />
+          <Route path="/movies" exact element={<MoviesPage />} />
+          <Route path="/movies/:id" exact element={<MoviePage />}>
+            <Route path="cast" exact element={<Cast />} />
+            <Route path="reviews" exact element={<Reviews />} />
+          </Route>
+          <Route path="*" element={<HomePage />} />
+        </Routes>
+      </Suspense>
     </BrowserRouter>
   );
 }

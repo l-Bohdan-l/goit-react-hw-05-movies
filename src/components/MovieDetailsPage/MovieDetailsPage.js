@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { fetchMovie } from '../../services/ApiSrvice';
 import {
   useParams,
@@ -19,6 +19,7 @@ export function MoviePage() {
   const { id } = useParams();
   const { pathname } = useLocation();
   const navigate = useNavigate();
+  const location = useLocation();
 
   console.log('location', useLocation());
   useEffect(() => {
@@ -28,15 +29,7 @@ export function MoviePage() {
   console.log('data', movieData);
 
   const goBack = () => {
-    if (pathname.includes('cast')) {
-      return navigate(-2);
-    }
-
-    if (pathname.includes('reviews')) {
-      return navigate(-2);
-    }
-
-    return navigate(-1);
+    navigate(-1);
   };
 
   console.log(pathname.includes('cast'));
@@ -44,13 +37,7 @@ export function MoviePage() {
     <section>
       {movieData && (
         <div>
-          <button
-            onClick={() => {
-              goBack();
-            }}
-          >
-            ← Go back
-          </button>
+          <button onClick={() => goBack()}>← Go back</button>
           <img
             src={
               movieData.poster_path

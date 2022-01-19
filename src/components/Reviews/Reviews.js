@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { fetchMovieReviews } from '../../services/ApiSrvice';
 import { useParams } from 'react-router-dom';
 
-export function Reviews() {
+export default function Reviews() {
   const [movieReview, setMovieReview] = useState(null);
   const { id } = useParams();
 
