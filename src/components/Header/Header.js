@@ -1,25 +1,37 @@
 import styles from './Header.module.scss';
-import { Routes, Route, NavLink } from 'react-router-dom';
-import { HomePage } from '../HomePage/HomePage';
-import { MoviesPage } from '../MoviesPage/MoviesPage';
+import { NavLink } from 'react-router-dom';
 
 export function Header() {
   return (
     <>
-      <header>
-        <ul className={styles.list}>
-          <li className={styles.item}>
-            <NavLink to="/">Home</NavLink>
-          </li>
-          <li className={styles.item}>
-            <NavLink to="/movies">Movies</NavLink>
-          </li>
-        </ul>
+      <header className={styles.header}>
+        <div className={styles.container}>
+          <ul className={styles.list}>
+            <li className={styles.item}>
+              <NavLink
+                className={styles.link}
+                style={({ isActive }) => ({
+                  color: isActive ? '#e96e1d' : 'black',
+                })}
+                to="/"
+              >
+                Home
+              </NavLink>
+            </li>
+            <li className={styles.item}>
+              <NavLink
+                className={styles.link}
+                style={({ isActive }) => ({
+                  color: isActive ? '#e96e1d' : 'black',
+                })}
+                to="/movies"
+              >
+                Movies
+              </NavLink>
+            </li>
+          </ul>
+        </div>
       </header>
-      {/* <Routes>
-        <Route path="/" exact element={<HomePage />} />
-        <Route path="/movies" exact element={<MoviesPage />} />
-      </Routes> */}
     </>
   );
 }
