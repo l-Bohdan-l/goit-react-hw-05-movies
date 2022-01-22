@@ -13,6 +13,7 @@ import {
 import { Cast } from '../Cast/Cast';
 import { Reviews } from '../Reviews/Reviews';
 import moviePlaceholder from '../../images/movie-placeholder.png';
+import styles from './MovieDetailsPage.module.scss';
 
 export function MoviePage() {
   const [movieData, setMovieData] = useState(null);
@@ -34,38 +35,53 @@ export function MoviePage() {
 
   console.log(pathname.includes('cast'));
   return (
-    <section>
+    <section className={styles.container}>
       {movieData && (
         <div>
-          <button onClick={() => goBack()}>← Go back</button>
-          <img
-            src={
-              movieData.poster_path
-                ? `https://image.tmdb.org/t/p/w500${movieData.poster_path}`
-                : moviePlaceholder
-            }
-            alt={movieData.original_title}
-          />
-          <div>
-            <h2>{movieData.original_title}</h2>
-            <p>User Score: {movieData.vote_average}</p>
-            <h3>Overview</h3>
-            <p>{movieData.overview}</p>
-            <h4>Genres</h4>
-            <ul>
-              {movieData.genres.map(({ id, name }) => (
-                <li key={id}>{name}</li>
-              ))}
-            </ul>
+          <button className={styles.button} onClick={() => goBack()}>
+            ← Go back
+          </button>
+          <div className={styles.imageDescriptionWrapper}>
+            <img
+              className={styles.image}
+              src={
+                movieData.poster_path
+                  ? `https://image.tmdb.org/t/p/w500${movieData.poster_path}`
+                  : moviePlaceholder
+              }
+              alt={movieData.original_title}
+            />
+            <div className={styles.description}>
+              <h2 className={styles.movieTitle}>{movieData.original_title}</h2>
+              <p>User Score: {movieData.vote_average}</p>
+              <h3>Overview</h3>
+              <p>{movieData.overview}</p>
+              <h4>Genres</h4>
+              <ul className={styles.genresList}>
+                {movieData.genres.map(({ id, name }) => (
+                  <li key={id}>{name}</li>
+                ))}
+              </ul>
+            </div>
           </div>
           <div>
             <h4>Additional information</h4>
-            <ul>
-              <li>
-                <NavLink to={`/movies/${id}/cast`}>Cast</NavLink>
+            <ul className={styles.additionalInfoList}>
+              <li className={styles.additionalInfoListItem}>
+                <NavLink
+                  className={styles.additionalInfoLink}
+                  to={`/movies/${id}/cast`}
+                >
+                  Cast
+                </NavLink>
               </li>
-              <li>
-                <NavLink to={`/movies/${id}/reviews`}>Reviews</NavLink>
+              <li className={styles.additionalInfoListItem}>
+                <NavLink
+                  className={styles.additionalInfoLink}
+                  to={`/movies/${id}/reviews`}
+                >
+                  Reviews
+                </NavLink>
               </li>
             </ul>
           </div>

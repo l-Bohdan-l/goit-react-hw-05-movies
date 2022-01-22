@@ -19,7 +19,6 @@ function App() {
     <BrowserRouter>
       <div className="App container">
         <Header />
-        {/* <HomePage /> */}
 
         <Suspense fallback={<h2>Loading ...</h2>}>
           <Routes>

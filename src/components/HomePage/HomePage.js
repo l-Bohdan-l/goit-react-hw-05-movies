@@ -12,7 +12,7 @@ export function HomePage() {
   }, []);
 
   return (
-    <>
+    <section className={styles.container}>
       <h2 className={styles.title}>Trending movies</h2>
       <ul className={styles.list}>
         {movieList.map(movie => (
@@ -32,6 +32,6 @@ export function HomePage() {
           </li>
         ))}
       </ul>
-    </>
+    </section>
   );
 }
