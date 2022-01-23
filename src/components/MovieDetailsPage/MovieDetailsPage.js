@@ -33,11 +33,14 @@ export function MoviePage() {
     navigate(-1);
   };
 
+  // const releaseYear = new Date(movieData.release_date).getFullYear()
+  // console.log(movieData.release_date);
+
   console.log(pathname.includes('cast'));
   return (
     <section className={styles.container}>
       {movieData && (
-        <div>
+        <div className={styles.movieDetailsWrapper}>
           <button className={styles.button} onClick={() => goBack()}>
             ← Go back
           </button>
@@ -52,23 +55,35 @@ export function MoviePage() {
               alt={movieData.original_title}
             />
             <div className={styles.description}>
-              <h2 className={styles.movieTitle}>{movieData.original_title}</h2>
+              <h2 className={styles.movieTitle}>
+                {movieData.original_title}
+                {movieData.release_date && (
+                  <p>{movieData.release_date.split('-')[0]}</p>
+                )}
+              </h2>
               <p>User Score: {movieData.vote_average}</p>
               <h3>Overview</h3>
-              <p>{movieData.overview}</p>
+              <p className={styles.movieOverview}>{movieData.overview}</p>
               <h4>Genres</h4>
               <ul className={styles.genresList}>
                 {movieData.genres.map(({ id, name }) => (
-                  <li key={id}>{name}</li>
+                  <li className={styles.genresListItem} key={id}>
+                    {name}
+                  </li>
                 ))}
               </ul>
             </div>
           </div>
           <div>
-            <h4>Additional information</h4>
+            <h4 className={styles.additionalInfoTitle}>
+              Additional information
+            </h4>
             <ul className={styles.additionalInfoList}>
               <li className={styles.additionalInfoListItem}>
                 <NavLink
+                  onClick={() => {
+                    return false;
+                  }}
                   className={styles.additionalInfoLink}
                   to={`/movies/${id}/cast`}
                 >
@@ -77,6 +92,9 @@ export function MoviePage() {
               </li>
               <li className={styles.additionalInfoListItem}>
                 <NavLink
+                  onClick={() => {
+                    return false;
+                  }}
                   className={styles.additionalInfoLink}
                   to={`/movies/${id}/reviews`}
                 >

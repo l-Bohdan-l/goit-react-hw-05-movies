@@ -1,0 +1,14 @@
+.castList {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.castListItem {
+  width: 270px;
+  margin-bottom: 15px;
+  box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+}
+
+.castListItem:not(:last-child) {
+  margin-right: 10px;
+}

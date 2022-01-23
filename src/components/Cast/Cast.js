@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { fetchMovieCast } from '../../services/ApiSrvice';
 import { useParams } from 'react-router-dom';
 import castPlaceholder from '../../images/cast-placeholder.png';
+import styles from './Cast.module.scss';
 
 export default function Cast() {
   const [movieCast, setMovieCast] = useState(null);
@@ -20,10 +21,11 @@ export default function Cast() {
   return (
     <section>
       {movieCast && (
-        <ul>
+        <ul className={styles.castList}>
           {movieCast.map(actor => (
-            <li key={actor.cast_id}>
+            <li className={styles.castListItem} key={actor.cast_id}>
               <img
+                className={styles.castImg}
                 src={
                   actor.profile_path
                     ? `https://image.tmdb.org/t/p/w500${actor.profile_path}`

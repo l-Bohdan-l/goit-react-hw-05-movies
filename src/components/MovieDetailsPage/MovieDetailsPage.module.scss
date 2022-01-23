@@ -5,6 +5,10 @@
   margin: 0 auto;
 }
 
+.movieDetailsWrapper {
+  margin-top: 15px;
+}
+
 .button {
   margin-bottom: 20px;
   appearance: none;
@@ -60,6 +64,7 @@
   display: flex;
   flex-direction: column;
   padding: 10px;
+  align-items: flex-start;
 }
 
 .movieTitle {
@@ -68,18 +73,26 @@
   line-height: 1.34;
   color: black;
   letter-spacing: 2px;
+  text-shadow: 5px 5px 5px #b59a9a;
+  align-self: center;
 }
 
 .genresList {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  padding-left: 0;
+}
+
+.genresListItem:not(:last-child) {
+  margin-right: 10px;
 }
 
 .additionalInfoList {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
+  padding-left: 0;
 }
 
 .additionalInfoLink {
@@ -88,4 +101,12 @@
 
 .additionalInfoListItem:not(:last-child) {
   margin-right: 30px;
+}
+
+.movieOverview {
+  text-align: start;
+}
+
+.additionalInfoTitle {
+  text-align: start;
 }
