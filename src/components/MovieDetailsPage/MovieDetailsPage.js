@@ -1,42 +1,24 @@
 import React from 'react';
-import { useState, useEffect, lazy, Suspense } from 'react';
+import { useState, useEffect } from 'react';
 import { fetchMovie } from '../../services/ApiSrvice';
-import {
-  useParams,
-  NavLink,
-  useLocation,
-  Routes,
-  Route,
-  Outlet,
-  useNavigate,
-} from 'react-router-dom';
-import { Cast } from '../Cast/Cast';
-import { Reviews } from '../Reviews/Reviews';
+import { useParams, NavLink, Outlet, useNavigate } from 'react-router-dom';
 import moviePlaceholder from '../../images/movie-placeholder.png';
 import styles from './MovieDetailsPage.module.scss';
+import PropTypes from 'prop-types';
 
 export function MoviePage() {
   const [movieData, setMovieData] = useState(null);
   const { id } = useParams();
-  const { pathname } = useLocation();
   const navigate = useNavigate();
-  const location = useLocation();
 
-  console.log('location', useLocation());
   useEffect(() => {
     fetchMovie(id).then(setMovieData);
   }, [id]);
-
-  console.log('data', movieData);
 
   const goBack = () => {
     navigate(-1);
   };
 
-  // const releaseYear = new Date(movieData.release_date).getFullYear()
-  // console.log(movieData.release_date);
-
-  console.log(pathname.includes('cast'));
   return (
     <section className={styles.container}>
       {movieData && (
@@ -110,4 +92,18 @@ export function MoviePage() {
   );
 }
 
-// /movies/:movieId/cast
+MoviePage.propTypes = {
+  movieData: PropTypes.shape({
+    release_date: PropTypes.string,
+    original_title: PropTypes.string,
+    poster_path: PropTypes.string,
+    vote_average: PropTypes.number,
+    overview: PropTypes.string,
+    genres: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number,
+        name: PropTypes.string,
+      }),
+    ),
+  }),
+};

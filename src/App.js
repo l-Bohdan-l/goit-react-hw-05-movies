@@ -1,12 +1,7 @@
 import './App.scss';
 import React from 'react';
 import { Suspense, lazy } from 'react';
-import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom';
-
-// import { ToastContainer } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
-import { useState, useEffect } from 'react';
-
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { HomePage } from './components/HomePage/HomePage';
 import { Header } from './components/Header/Header';
 import { MoviesPage } from './components/MoviesPage/MoviesPage';

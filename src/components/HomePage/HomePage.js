@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import moviePlaceholder from '../../images/movie-placeholder.png';
 import styles from './HomePage.module.scss';
+import PropTypes from 'prop-types';
 
 export function HomePage() {
   const [movieList, setMovieList] = useState([]);
@@ -35,3 +36,13 @@ export function HomePage() {
     </section>
   );
 }
+
+HomePage.propTypes = {
+  movieList: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      original_title: PropTypes.string,
+      poster_path: PropTypes.string,
+    }),
+  ),
+};

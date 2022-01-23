@@ -4,6 +4,7 @@ import { fetchMovieCast } from '../../services/ApiSrvice';
 import { useParams } from 'react-router-dom';
 import castPlaceholder from '../../images/cast-placeholder.png';
 import styles from './Cast.module.scss';
+import PropTypes from 'prop-types';
 
 export default function Cast() {
   const [movieCast, setMovieCast] = useState(null);
@@ -14,9 +15,6 @@ export default function Cast() {
       setMovieCast(data.cast);
     });
   }, []);
-
-  console.log('cast', movieCast);
-  // console.log('cast id', id)
 
   return (
     <section>
@@ -44,3 +42,12 @@ export default function Cast() {
     </section>
   );
 }
+
+Cast.propTypes = {
+  actor: PropTypes.shape({
+    cast_id: PropTypes.number,
+    poster_path: PropTypes.string,
+    name: PropTypes.string,
+    character: PropTypes.string,
+  }),
+};

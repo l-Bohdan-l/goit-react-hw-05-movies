@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { fetchMovieReviews } from '../../services/ApiSrvice';
 import { useParams } from 'react-router-dom';
 import styles from './Reviews.module.scss';
+import PropTypes from 'prop-types';
 
 export default function Reviews() {
   const [movieReview, setMovieReview] = useState(null);
@@ -13,8 +14,6 @@ export default function Reviews() {
       setMovieReview(data.results);
     });
   }, []);
-
-  console.log('reviews', movieReview);
 
   return (
     <section>
@@ -35,3 +34,13 @@ export default function Reviews() {
     </section>
   );
 }
+
+Reviews.prototypes = {
+  movieReview: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      reviewAuthor: PropTypes.string,
+      content: PropTypes.string,
+    }),
+  ),
+};

@@ -15,8 +15,7 @@ export const fetchMovie = async id => {
   const baseUrl = `https://api.themoviedb.org/3/`;
   const endPoint = `movie/`;
   let moveId = id;
-  const url =
-    baseUrl + endPoint + moveId + '?' + `api_key=${KEY}` + `&language=en-US`;
+  const url = baseUrl + endPoint + moveId + `?api_key=${KEY}&language=en-US`;
   return await fetch(url).then(result => {
     return result.json();
   });
